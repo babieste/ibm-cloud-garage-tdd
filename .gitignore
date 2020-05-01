@@ -8,3 +8,4 @@ node_modules/
 # project setup instructions are in README.md
 package.json
 package-lock.json
+yarn.lock
