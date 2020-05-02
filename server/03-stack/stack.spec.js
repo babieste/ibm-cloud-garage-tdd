@@ -1,10 +1,15 @@
 const stackFactory = () => {
   let empty = true;
+  let count = 0;
   return {
     isEmpty: () => empty,
-    size: () => 0,
+    size: () => count,
     push: () => {
       empty = false;
+      count = count + 1;
+    },
+    pop: () => {
+      empty = true;
     }
   };
 };
@@ -30,8 +35,17 @@ describe('a stack', () => {
     stack.push();
     expect(stack.isEmpty()).toBe(false);
   });
-  it.todo('stack size is 1 when pushed');
-  it.todo('stack is empty when pushed and popped');
+
+  // it('stack size is 1 when pushed', () => {
+  //   stack.push();
+  //   expect(stack.size()).toBe(1);
+  // });
+
+  it('stack is empty when pushed and popped', () => {
+    stack.push();
+    stack.pop();
+    expect(stack.isEmpty()).toBe(true);
+  });
   it.todo('stack size is 0 when pushed and popped');
   it.todo('throws overflow error when pushing to a stack at full capacity');
   it.todo('throw underflow error when popping an empty stack');
