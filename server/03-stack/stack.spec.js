@@ -1,11 +1,12 @@
-const stackFactory = () => {
+const stackFactory = (capacity = 2) => {
+  if (capacity < 1) throw new Error('invalid capacity');
   let elements = [];
 
   return {
     isEmpty: () => elements.length === 0,
     size: () => elements.length,
     push: (element) => {
-      if (elements.length === 2) throw new Error('capacity overflow error');
+      if (elements.length === capacity) throw new Error('capacity overflow error');
       elements.push(element);
     },
     pop: () => {
@@ -87,5 +88,10 @@ describe('a stack', () => {
     expect(stack.pop()).toBe(2);
     expect(stack.pop()).toBe(1);
   });
-  it.todo('accepts only a positive capacity');
+
+  it('accepts only a positive capacity', () => {
+    expect(() => {
+      let stack = stackFactory(-1);
+    }).toThrowError('invalid capacity');
+  });
 });
