@@ -1,7 +1,15 @@
-let stack = {
-  isEmpty: () => true,
-  size: () => 0
+const stackFactory = () => {
+  let empty = true;
+  return {
+    isEmpty: () => empty,
+    size: () => 0,
+    push: () => {
+      empty = false;
+    }
+  };
 };
+
+let stack = stackFactory();
 
 describe('the stack canary spec', () => {
   it('shows the infrastructure works', () => {
@@ -17,7 +25,11 @@ describe('a stack', () => {
   it('starts with stack size of 0', () => {
     expect(stack.size()).toBe(0);
   });
-  it.todo('is not empty when pushed');
+
+  it('is not empty when pushed', () => {
+    stack.push();
+    expect(stack.isEmpty()).toBe(false);
+  });
   it.todo('stack size is 1 when pushed');
   it.todo('stack is empty when pushed and popped');
   it.todo('stack size is 0 when pushed and popped');
