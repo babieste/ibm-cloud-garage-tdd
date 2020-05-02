@@ -1,4 +1,7 @@
-let isPalindrome = (word) => word === word.split('').reverse().join('');
+let isPalindrome = phrase => {
+  if (phrase.trim() === '') return false;
+  return phrase === phrase.split('').reverse().join('');
+};
 
 describe('the palindrome canary spec', () => {
   it('shows the infrastructure works', () => {
@@ -13,15 +16,13 @@ describe('the palindrome canary spec', () => {
     expect(isPalindrome('dude')).toBe(false);
   });
 
-  it('true for mom mom', () => {
-    expect(isPalindrome('mom mom')).toBe(true);
-  });
-
   it('false for dad mom', () => {
     expect(isPalindrome('dad mom')).toBe(false);
   });
 
-  it.todo('true for whitespace');
+  it('true for whitespace', () => {
+    expect(isPalindrome('    ')).toBe(false);
+  });
 
   it.todo('error for empy string');
 
